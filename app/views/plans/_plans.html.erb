@@ -1,0 +1,16 @@
+<ul class="list-unstyled">
+  <% plans.each do |plan| %>
+    <li class="media mb-3">
+      
+      <div class="media-body">
+        <div>
+          <p><%= plan.destination %></p>
+        </div>
+        <div>
+          <%= link_to "Delete", plan, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate plans %>
+</ul>

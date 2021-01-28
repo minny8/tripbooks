@@ -1,0 +1,13 @@
+
+<h1>新たな旅行計画</h1>
+
+<%= form_with(model: @plan, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <div>
+  <%= f.label :destination, '行き先' %>
+  <%= f.text_field :destination, :required => true %>
+  </div>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '一覧に戻る', root_url %>
