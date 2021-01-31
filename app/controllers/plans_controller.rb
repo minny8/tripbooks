@@ -17,6 +17,11 @@ class PlansController < ApplicationController
       render 'plans/new'
     end
   end
+  
+  def show
+    @plan = Plan.find(params[:id])
+    @events = @plan.events.order(id: :desc).page(params[:page])
+  end
 
   def destroy
     @plan.destroy

@@ -1,0 +1,23 @@
+<h1><%= @plan.destination %>のスケジュール</h1>
+<%= link_to "show", new_event_url, class: 'btn btn-secondary btn-sm' %>
+<div class="row">
+    <div class="col-sm-8">
+      <ul class="list-unstyled">
+        <% @events.each do |event| %>
+          <li class="media mb-3">
+            
+            <div class="media-body">
+              <div>
+                <p><%= event.event_title %></p>
+              </div>
+              <div>
+                <%= link_to "show", event, class: 'btn btn-secondary btn-sm' %>
+                <%= link_to "Delete", event, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        <%= paginate @events %>
+      </ul>
+    </div>
+  </div>

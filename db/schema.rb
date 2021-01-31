@@ -10,12 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_023352) do
+ActiveRecord::Schema.define(version: 2021_01_29_005024) do
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "event_title"
+    t.time "start_time"
+    t.time "end_time"
+    t.string "tel"
+    t.text "url"
+    t.string "address"
+    t.string "currency"
+    t.decimal "budget", precision: 10
+    t.text "memo"
+    t.bigint "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_events_on_plan_id"
+  end
 
   create_table "plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.date "date"
     t.string "destination"
+    t.date "departure_date"
+    t.date "return_date"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,5 +47,6 @@ ActiveRecord::Schema.define(version: 2021_01_28_023352) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "events", "plans"
   add_foreign_key "plans", "users"
 end

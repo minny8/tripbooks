@@ -1,0 +1,22 @@
+<h1>スケジュール</h1>
+<div class="row">
+    <div class="col-sm-8">
+      <ul class="list-unstyled">
+        <% @events.each do |event| %>
+          <li class="media mb-3">
+            
+            <div class="media-body">
+              <div>
+                <p><%= event.title %></p>
+              </div>
+              <div>
+                <%= link_to "show", event, method: :show, class: 'btn btn-secondary btn-sm' %>
+                <%= link_to "Delete", event, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        <%= paginate events %>
+      </ul>
+    </div>
+  </div>
