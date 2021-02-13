@@ -1,17 +1,17 @@
-<ul class="list-unstyled">
+<div class="row">
   <% plans.each do |plan| %>
-    <li class="media mb-3">
-      
-      <div class="media-body">
-        <div>
-          <p><%= plan.destination %></p>
+    <div class="col-md-3 mb-5 ">
+      <div class="card" style="max-width: 18rem;">
+        <div class="card_body text-center">
+          <%= link_to plan, class: "text-dark" do %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-light"><h4><%= plan.destination %></h4></li>
+            <li class="list-group-item "><%= plan.departure_date%> ~ <%= plan.return_date%></li>
+          </ul>
+          <% end %>
         </div>
-        <div>
-          <%= link_to "show", plan, class: 'btn btn-secondary btn-sm' %>
-          <%= link_to "Delete", plan, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-        </div>
-      </div>
-    </li>
+      </diV>
+    </div>
   <% end %>
   <%= paginate plans %>
-</ul>
+</div>

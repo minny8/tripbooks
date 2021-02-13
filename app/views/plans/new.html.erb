@@ -1,19 +1,5 @@
-<h1>新たな旅行計画</h1>
-
-<%= form_with(model: @plan, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form_group">
-  <%= f.label :destination, '行き先' %>
-  <%= f.text_field :destination, class: 'form-control', :required => true %>
-  <div class="form_group">
-  <%= f.label :departure_date, '出発日' %>
-  <%= f.date_field :departure_date, class: 'form-control', :required => true %>
-  </div>
-  <div class="form_group">
-  <%= f.label :return_date, '帰着日' %>
-  <%= f.date_field :return_date, class: 'form-control', :required => true %>
-  </div>
-  <%= f.submit '投稿' %>
-<% end %>
-
-<%= link_to '一覧に戻る', root_url %>
+<div class="offset-sm-4 col-sm-4">
+  <h1 class="text-center">新たな旅行計画</h1>
+  <%= render 'form' %>
+  <p class="mt-3"><%= link_to '一覧に戻る', root_path, class: "text-danger" %></p>
+</div>

@@ -1,13 +1,49 @@
-<h1><%= @event.event_title %>の詳細</h1>
-
-<table class="table table-striped">
-  <tr><th>開始時間</th><td><%= @event.start_time.strftime('%H:%M') %></td></tr>
-  <tr><th>終了時間</th><td><%= @event.end_time.strftime('%H:%M') %></td></tr>
-  <tr><th>TEL</th><td><%= link_to(@event.tel, "tel:#{@event.tel}") %></td></tr>
-  <tr><th>URL</th><td><%= link_to(@event.url, "#{@event.url}", target: :_blank) %></td></tr>
-  <tr><th>住所</th><td><%= link_to(@event.address, "https://www.google.com/maps/search/?api=1&query=#{@event.address}", target: :_blank) %></td></tr>
-  <tr><th>金額</th><td><%= @event.budget.to_s(:delimited) %></td></tr>
-  <tr><th>メモ</th><td><%= @event.memo %></td></tr>
+<div class="offset-sm-4 col-sm-4">
+  <h1 class="text-center"><%= @event.event_title %>の詳細</h1>
   
-</table>
-  <div>
+  <table class="table table-striped">
+    <tr>
+      <th>日付</th>
+      <td><%= @event.date.strftime("%Y年%m月%d日") %></td>
+    </tr>
+    <tr>
+      <th>開始時間</th>
+      <td>
+        <% unless @event.start_time.nil? then %>
+          <%= @event.start_time.strftime('%H:%M')  %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>終了時間</th>
+      <td>
+        <% unless @event.end_time.nil? then %>
+          <%= @event.end_time.strftime('%H:%M')  %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>TEL</th>
+      <td><%= link_to(@event.tel, "tel:#{@event.tel}") %></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><%= link_to(@event.url, "#{@event.url}", target: :_blank) %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= link_to(@event.address, "https://www.google.com/maps/search/?api=1&query=#{@event.address}", target: :_blank) %></td>
+    </tr>
+    <tr>
+      <th>金額</th>
+      <td><%= @budget %></td>
+    </tr>
+    <tr>
+      <th>メモ</th>
+      <td><%= @event.memo %></td>
+    </tr>
+  </table>
+  <%= link_to "編集", edit_event_path, class: 'btn btn-secondary' %>
+  <%= link_to "削除", event_path(@event), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+  <p class="mt-2"><%= link_to 'スケジュールに戻る', plan_path(@event.plan.id), class: "text-danger" %></p>
+</div>

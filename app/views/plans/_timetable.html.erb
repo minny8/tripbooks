@@ -1,0 +1,19 @@
+<table class="table table-bordered bg-white">
+  <tr class="position-relative">
+    <td style="width:30%" class="text-center">
+      <% unless event.start_time.nil? then %>
+        <%= event.start_time.strftime('%H:%M')  %>
+      <% end %>
+    </td>
+    <td rowspan="2" class="align-middle">
+      <a class="stretched-link"><%= link_to(event.event_title,event) %></a>
+    </td>
+  </tr>
+  <tr class="position-relative">
+    <td class="text-center">
+      <% unless event.end_time.nil? then %>
+        <%= event.end_time.strftime('%H:%M')  %>
+      <% end %>
+    </td>
+  </tr>
+</table>

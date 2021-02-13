@@ -1,23 +1,41 @@
-<h1><%= @plan.destination %>のスケジュール</h1>
-<%= link_to "show", new_event_url, class: 'btn btn-secondary btn-sm' %>
-<div class="row">
-    <div class="col-sm-8">
-      <ul class="list-unstyled">
-        <% @events.each do |event| %>
-          <li class="media mb-3">
-            
-            <div class="media-body">
-              <div>
-                <p><%= event.event_title %></p>
-              </div>
-              <div>
-                <%= link_to "show", event, class: 'btn btn-secondary btn-sm' %>
-                <%= link_to "Delete", event, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-              </div>
-            </div>
-          </li>
-        <% end %>
-        <%= paginate @events %>
+<h1 class="text-center"><%= @plan.destination %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <ul class="sticky-top">
+        <li class="list-group-item"><%= link_to "新規イベントの作成", new_event_path %></li>
+        <li class="list-group-item"><%= link_to "旅程の編集", edit_plan_path %></li>
+        <li class="list-group-item"><%= link_to "一覧へ戻る", root_url, class: "text-danger" %></li>
       </ul>
     </div>
+    <div class="offset-sm-1 col-sm-4 mb-3">
+      <div class="border bg-secondary" style="padding:20px 30px;">
+        <% @date.each do |date| %>
+          <div class="border border-secondary bg-light" style="padding: 10px 20px">
+          <h5><%= date.strftime("%Y年%m月%d日") %></h5>
+          <% @events.each do |event| %>
+            <% if event.date == date %>
+              <%= render 'timetable', { event: event } %>
+            <% end %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+      <% unless @out_date_uniq.empty? then %>
+        <h3 class="text-danger text-center mt-3">旅行期間外</h3>
+        <div class="border bg-secondary" style="padding:20px 30px;">
+          <% @out_date_uniq.sort.each do |date| %>
+            <div class="border border-secondary bg-light" style="padding: 10px 20px">
+              <h5><%= date.strftime("%Y年%m月%d日") %></h5>
+              <% @events.each do |event| %>
+                <% if event.date == date %>
+                  <%= render 'timetable', { event: event } %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
