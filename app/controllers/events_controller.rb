@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:show, :edit, :update, :create, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   
 
@@ -13,6 +13,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @plan = Plan.find(params[:id])
     travel_period
+    currency
   end
 
   def create
@@ -32,6 +33,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     travel_period
     @plan = @event.plan.id
+    currency
   end
 
   def update
@@ -56,7 +58,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:event_title, :date, :start_time, :end_time, :tel, :url, :address, :budget, :memo)
+    params.require(:event).permit(:event_title, :date, :start_time, :end_time, :tel, :url, :address, :currency, :budget, :memo)
   end
   
   def budget
@@ -68,7 +70,7 @@ class EventsController < ApplicationController
   end
   
   def correct_user
-    @event = Event.find_by(params[:id])
+    @event = Event.find(params[:id])
     @plan = current_user.plans.find_by(id: @event.plan.id)
     unless @plan
       redirect_to root_url
@@ -84,6 +86,10 @@ class EventsController < ApplicationController
       @date.push(@departure)
       @departure += 1
     end
+  end
+  
+  def currency
+    @currency = ["¥","$","€"]
   end
   
 end

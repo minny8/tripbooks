@@ -32,7 +32,10 @@
       </div>
       <div class="form_group mb-2">
       <%= f.label :budget, '金額' %>
-      <%= f.number_field :budget, class: 'form-control' %>
+        <div class="row">
+          <%= f.select :currency, @currency, {selected: "¥"}, class: 'form-control col-sm-2 ml-3', :required => true %>
+          <%= f.number_field :budget, class: 'form-control col-sm-9' %>
+        </div>
       </div>
       <div class="form_group mb-2">
       <%= f.label :memo, 'メモ' %>
