@@ -6,7 +6,7 @@
       <% end %>
     </td>
     <td rowspan="2" class="align-middle">
-      <a class="stretched-link"><%= link_to(event.event_title,event) %></a>
+      <a class="stretched-link"><%= link_to(event.title,plan_event_path(@plan,event.id)) %></a>
     </td>
   </tr>
   <tr class="position-relative">

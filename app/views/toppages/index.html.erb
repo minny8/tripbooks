@@ -3,8 +3,9 @@
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the TripBooks</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <h1 class="mb-3">Welcome to the TripBooks</h1>
+      <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary mr-5' %>
+      <%= link_to 'サインアップ', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
 <% end %>

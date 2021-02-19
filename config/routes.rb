@@ -9,9 +9,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create]
   
   resources :plans, only: [:new, :create, :show, :edit, :update, :destroy] do
-    member do
-      resources :events
-    end
+      resources :events, except: [:index]
   end
-  
 end

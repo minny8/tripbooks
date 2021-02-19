@@ -19,18 +19,15 @@ class PlansController < ApplicationController
   end
   
   def show
-    @plan = Plan.find(params[:id])
-    @events = @plan.events.order(start_time: :asc).page(params[:page])
     travel_period
     out_of_period
   end
   
   def edit
-    @plan = Plan.find(params[:id])
+    
   end
 
   def update
-    @plan = Plan.find(params[:id])
     if @plan.update(plan_params)
       flash[:success] = 'イベントは正常に更新されました'
       redirect_to @plan
@@ -71,6 +68,7 @@ class PlansController < ApplicationController
   end
   
   def out_of_period
+    @events = @plan.events.order(start_time: :asc).page(params[:page])
     @out_date = []
     @events.each do |event| 
       if event.date < @plan.departure_date || event.date > @plan.return_date
