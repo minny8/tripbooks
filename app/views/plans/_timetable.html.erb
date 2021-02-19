@@ -1,6 +1,6 @@
 <table class="table table-bordered bg-white">
   <tr class="position-relative">
-    <td style="width:30%" class="text-center">
+    <td style="width:30%" class="text-center py-1">
       <% unless event.start_time.nil? then %>
         <%= event.start_time.strftime('%H:%M')  %>
       <% end %>
@@ -10,7 +10,7 @@
     </td>
   </tr>
   <tr class="position-relative">
-    <td class="text-center">
+    <td class="text-center py-1">
       <% unless event.end_time.nil? then %>
         <%= event.end_time.strftime('%H:%M')  %>
       <% end %>
