@@ -1,3 +1,14 @@
+<% @departure = @plan.departure_date %>
+<%  @return = @plan.return_date %>
+<%  @travel_period = (@return - @departure).to_i %>
+<%  @dates = [] %>
+<%  while @departure <= @return do %>
+   <% @dates.push(@departure) %>
+   <% @departure += 1 %>
+<%  end %>
+  
+<% @currency = ["¥","$","€","£"] %>
+
 <div class="row">
   <div class="col-sm-4 offset-sm-4">
     <%= form_with(model: [@plan, @event], local: true) do |f| %>
@@ -8,7 +19,7 @@
       </div>
       <div class="form_group mb-2">
       <%= f.label :date, '日付' %>
-      <%= f.select :date, @date, {}, class: 'form-control', :required => true %>
+      <%= f.select :date, @dates, {}, class: 'form-control', :required => true %>
       </div>
       <div class="form_group mb-2">
       <%= f.label :start_time, '開始時間' %>
@@ -23,7 +34,7 @@
       <%= f.text_field :url, class: 'form-control' %>
       </div>
       <div class="form_group mb-2">
-      <%= f.label :tel, '電話番号' %>
+      <%= f.label :tel, '電話番号(ハイフンなし)' %>
       <%= f.telephone_field :tel, class: 'form-control' %>
       </div>
       <div class="form_group mb-2">

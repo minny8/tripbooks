@@ -8,8 +8,6 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @plan = Plan.find(params[:plan_id])
-    travel_period
-    currency
   end
 
   def create
@@ -26,8 +24,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    travel_period
-    currency
   end
 
   def update
@@ -59,20 +55,7 @@ class EventsController < ApplicationController
       redirect_to root_url
     end
   end
-  
-  def travel_period
-    @departure = @plan.departure_date
-    @return = @plan.return_date
-    @travel_period = (@return - @departure).to_i
-    @date = []
-    while @departure <= @return do
-      @date.push(@departure)
-      @departure += 1
-    end
-  end
-  
-  def currency
-    @currency = ["¥","$","€","£"]
-  end
+
+
   
 end
