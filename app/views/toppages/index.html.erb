@@ -1,5 +1,15 @@
 <% if logged_in? %>
-      <%= render 'plans/plans', plans: @plans %>
+  <% if @plans.any? %>
+    <%= render 'plans/plans', plans: @plans %>
+  <% else %>
+    <div class="center jumbotron">
+    <div class="text-center">
+      <h1 class="mb-3">さっそく旅行の計画を立ててみましょう</h1>
+      <%= link_to '新しい旅行の計画', new_plan_path, class: 'btn btn-lg btn-primary mr-5' %>
+    </div>
+  </div>
+  <% end %>
+      
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
