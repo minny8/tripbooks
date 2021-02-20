@@ -38,7 +38,7 @@
       <th>金額</th>
       <td>
         <% unless @event.budget.nil? then %>
-        <%= @event.currency + @event.budget.to_s(:delimited) %>
+        <%= number_to_currency(@event.budget,unit:"#{@event.currency}",strip_insignificant_zeros:true) %>
         <% end %>
       </td>
     </tr>

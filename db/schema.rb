@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_101034) do
+ActiveRecord::Schema.define(version: 2021_02_19_142216) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_101034) do
     t.text "url"
     t.string "address"
     t.string "currency"
-    t.decimal "budget", precision: 10
+    t.decimal "budget", precision: 10, scale: 2
     t.text "memo"
     t.bigint "plan_id"
     t.datetime "created_at", null: false

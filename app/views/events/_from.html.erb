@@ -34,7 +34,7 @@
       <%= f.label :budget, '金額' %>
         <div class="row">
           <%= f.select :currency, @currency, {selected: "¥"}, class: 'form-control col-sm-2 ml-3', :required => true %>
-          <%= f.text_field :budget, class: 'form-control col-sm-9' %>
+          <%= f.text_field :budget, class: 'form-control col-sm-9', :value => number_with_precision(f.object.budget, precision: 2, strip_insignificant_zeros: true) %>
         </div>
       </div>
       <div class="form_group mb-2">
